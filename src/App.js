@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Practise from "./components/Practise";
+import styled from "styled-components/macro";
 
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,14 +31,21 @@ const App = () => {
   }
 
   return (
-    <div>
+    <AppStyle>
       {renderPage()}
       <Navigation
         buttonTexts={["Home", "Practise", "Bookmarks", "Settings"]}
         onClick={setActiveIndex}
       />
-    </div>
+    </AppStyle>
   );
 };
+
+const AppStyle = styled.div`
+  display: grid;
+  grid-template-rows: auto 48px;
+  height: 100vh;
+  font-family: sans-serif;
+`;
 
 export default App;
