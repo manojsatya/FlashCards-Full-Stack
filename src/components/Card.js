@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components/macro";
 
 function Card({ title, question, answer }) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
@@ -8,11 +9,11 @@ function Card({ title, question, answer }) {
   }
 
   return (
-    <section onClick={toggleAnswer}>
+    <CardStyle onClick={toggleAnswer}>
       <h2>{title}</h2>
       <p>{question}</p>
       {isAnswerVisible && <Answer text={answer} />}
-    </section>
+    </CardStyle>
   );
 
   function Answer({ text }) {
@@ -24,5 +25,12 @@ function Card({ title, question, answer }) {
     );
   }
 }
+
+const CardStyle = styled.section`
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px #0002;
+`;
 
 export default Card;
