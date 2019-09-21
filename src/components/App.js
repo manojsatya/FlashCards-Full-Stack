@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Navigation from "./components/Navigation";
-import HomePage from "./components/HomePage";
-import Practise from "./components/Practise";
+import Navigation from "./Navigation";
+import HomePage from "./HomePage";
 import styled from "styled-components/macro";
+import PageStyle from "./Page";
+import GlobalStyle from "./GlobalStyle";
 
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,9 +23,9 @@ const App = () => {
   function renderPage() {
     const pages = {
       0: <HomePage cards={cards} />,
-      1: <Practise />,
-      2: <section>Bookmarks</section>,
-      3: <section>Settings</section>
+      1: <PageStyle>Practise</PageStyle>,
+      2: <PageStyle>Bookmarks</PageStyle>,
+      3: <PageStyle>Settings</PageStyle>
     };
 
     return pages[activeIndex] || <section>404</section>;
@@ -32,6 +33,7 @@ const App = () => {
 
   return (
     <AppStyle>
+      <GlobalStyle />
       {renderPage()}
       <Navigation
         buttonTexts={["Home", "Practise", "Bookmarks", "Settings"]}
