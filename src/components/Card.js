@@ -31,6 +31,8 @@ const CardStyle = styled.section`
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
+  margin-bottom: 20px;
+  /* margin: 20px; */
 `;
 
 export default Card;

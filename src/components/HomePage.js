@@ -1,9 +1,10 @@
 import React from "react";
 import Card from "./Card";
+import styled from "styled-components/macro";
 
 function HomePage({ cards }) {
   return (
-    <section>
+    <HomePageStyle>
       <h1>HomePage</h1>
       {cards.map((card, index) => (
         <Card
@@ -13,8 +14,14 @@ function HomePage({ cards }) {
           answer={card.answer}
         />
       ))}
-    </section>
+    </HomePageStyle>
   );
 }
+
+const HomePageStyle = styled.section`
+  * {
+    display: grid;
+  }
+`;
 
 export default HomePage;

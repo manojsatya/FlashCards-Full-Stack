@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import styled from "styled-components/macro";
 import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
+import Form from "./Form";
 
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,10 +21,22 @@ const App = () => {
     }
   ]);
 
+  const addCard = ({ title, question, answer }) => {
+    setCards([...cards, { title, question, answer }]);
+  };
+
   function renderPage() {
     const pages = {
-      0: <HomePage cards={cards} />,
-      1: <PageStyle>Practise</PageStyle>,
+      0: (
+        <PageStyle>
+          <HomePage cards={cards} />
+        </PageStyle>
+      ),
+      1: (
+        <PageStyle>
+          <Form addCard={addCard} />
+        </PageStyle>
+      ),
       2: <PageStyle>Bookmarks</PageStyle>,
       3: <PageStyle>Settings</PageStyle>
     };
@@ -36,7 +49,7 @@ const App = () => {
       <GlobalStyle />
       {renderPage()}
       <Navigation
-        buttonTexts={["Home", "Practise", "Bookmarks", "Settings"]}
+        buttonTexts={["Home", "Add", "Bookmarks", "Settings"]}
         onClick={setActiveIndex}
       />
     </AppStyle>
