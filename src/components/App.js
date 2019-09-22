@@ -6,8 +6,15 @@ import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
 import NavigationIcons from "./NavigationIcons";
+import { getCards } from "./services";
+
+//console.log(cardfromGet);
 
 const App = () => {
+  getCards()
+    .then(data => setCards(data))
+    //.then(console.log("Successfully fetched data"))
+    .catch(err => console.log(err));
   const [activeIndex, setActiveIndex] = useState("home");
   const [cards, setCards] = useState([
     {
@@ -74,7 +81,7 @@ const App = () => {
         onClick={setActiveIndex}
       /> */}
       <NavigationIcons
-        buttonTexts={["Home", "Favorites", "Settings"]}
+        // buttonTexts={["Home", "Favorites", "Settings"]}
         onClick={setActiveIndex}
       />
     </AppStyle>
