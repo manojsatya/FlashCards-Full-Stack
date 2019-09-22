@@ -8,8 +8,10 @@ const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   background: #eee;
+
   /* text-align: center */
 }
+
 `;
 
 export default GlobalStyle;

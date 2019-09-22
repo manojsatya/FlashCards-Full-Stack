@@ -1,14 +1,35 @@
 import React, { useState } from "react";
-import Navigation from "./Navigation";
+//import Navigation from "./Navigation";
 import HomePage from "./HomePage";
 import styled from "styled-components/macro";
 import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
+import NavigationIcons from "./NavigationIcons";
 
 const App = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState("home");
   const [cards, setCards] = useState([
+    {
+      title: "Foo",
+      question: "What?",
+      answer: "That!"
+    },
+    {
+      title: "Bar",
+      question: "This?",
+      answer: "That!"
+    },
+    {
+      title: "Foo",
+      question: "What?",
+      answer: "That!"
+    },
+    {
+      title: "Bar",
+      question: "This?",
+      answer: "That!"
+    },
     {
       title: "Foo",
       question: "What?",
@@ -27,18 +48,18 @@ const App = () => {
 
   function renderPage() {
     const pages = {
-      0: (
+      home: (
         <PageStyle>
           <HomePage cards={cards} />
         </PageStyle>
       ),
-      1: (
+      add: (
         <PageStyle>
           <Form addCard={addCard} />
         </PageStyle>
       ),
-      2: <PageStyle>Bookmarks</PageStyle>,
-      3: <PageStyle>Settings</PageStyle>
+      favorites: <PageStyle>Bookmarks</PageStyle>,
+      settings: <PageStyle>Settings</PageStyle>
     };
 
     return pages[activeIndex] || <section>404</section>;
@@ -48,8 +69,12 @@ const App = () => {
     <AppStyle>
       <GlobalStyle />
       {renderPage()}
-      <Navigation
+      {/* <Navigation
         buttonTexts={["Home", "Add", "Bookmarks", "Settings"]}
+        onClick={setActiveIndex}
+      /> */}
+      <NavigationIcons
+        buttonTexts={["Home", "Favorites", "Settings"]}
         onClick={setActiveIndex}
       />
     </AppStyle>
@@ -58,8 +83,8 @@ const App = () => {
 
 const AppStyle = styled.div`
   display: grid;
-  grid-template-rows: auto 48px;
-  height: 100vh;
+  grid-template-rows: auto 0px;
+  min-height: 100vh;
   font-family: sans-serif;
 `;
 
