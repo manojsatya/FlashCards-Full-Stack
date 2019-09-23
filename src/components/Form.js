@@ -1,36 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components/macro";
-//import { makeStyles } from "@material-ui/core/styles";
-//import Button from "@material-ui/core/Button";
-//import { teal } from "@material-ui/core/colors";
-//import HUE from "@material-ui/core/colors/HUE";
 
-function Form({ addCard }) {
-  const [title, setTitle] = useState("");
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  //const classes = useStyles();
-  //const color = HUE[SHADE];
-  //   const accent = teal.A700;
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    addCard({ title, question, answer });
-    setTitle("");
-    setQuestion("");
-    setAnswer("");
-  }
+function Form({ onSubmit }) {
   return (
-    <FormStyle>
+    <main>
       <h1>Question and Answer</h1>
-      <form onSubmit={handleSubmit}>
+      <FormStyle onSubmit={handleSubmit}>
         <div>
-          <input
-            placeholder="Title"
-            name="title"
-            value={title}
-            onChange={event => setTitle(event.target.value)}
-          ></input>
+          <input placeholder="Title" name="title"></input>
         </div>
 
         <div>
@@ -40,8 +17,6 @@ function Form({ addCard }) {
             rows="10"
             placeholder="Question"
             name="question"
-            value={question}
-            onChange={event => setQuestion(event.target.value)}
           ></textarea>
         </div>
         <div>
@@ -51,20 +26,26 @@ function Form({ addCard }) {
             rows="10"
             placeholder="Answer"
             name="answer"
-            value={answer}
-            onChange={event => setAnswer(event.target.value)}
           ></textarea>
         </div>
+        {/* <input type="checkbox" name="isBookmarked"></input> */}
         <button type="submit">Submit</button>
         {/* <Button variant="contained" className={classes.button} type="submit">
           Primary
         </Button> */}
-      </form>
-    </FormStyle>
+      </FormStyle>
+    </main>
   );
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.target));
+    console.log(data);
+    onSubmit(data);
+  }
 }
 
-const FormStyle = styled.div`
+const FormStyle = styled.form`
   * {
     display: grid;
   }

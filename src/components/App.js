@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import Navigation from "./Navigation";
 import HomePage from "./HomePage";
 import styled from "styled-components/macro";
@@ -6,55 +6,27 @@ import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
 import NavigationIcons from "./NavigationIcons";
-import { getCards } from "./services";
+import { getCards, postCard } from "./services";
+import Landing from "./Landing";
 
 //console.log(cardfromGet);
 
 const App = () => {
-  getCards()
-    .then(data => setCards(data))
-    //.then(console.log("Successfully fetched data"))
-    .catch(err => console.log(err));
-  const [activeIndex, setActiveIndex] = useState("home");
-  const [cards, setCards] = useState([
-    {
-      title: "Foo",
-      question: "What?",
-      answer: "That!"
-    },
-    {
-      title: "Bar",
-      question: "This?",
-      answer: "That!"
-    },
-    {
-      title: "Foo",
-      question: "What?",
-      answer: "That!"
-    },
-    {
-      title: "Bar",
-      question: "This?",
-      answer: "That!"
-    },
-    {
-      title: "Foo",
-      question: "What?",
-      answer: "That!"
-    },
-    {
-      title: "Bar",
-      question: "This?",
-      answer: "That!"
-    }
-  ]);
+  useEffect(() => {
+    getCards().then(setCards);
+  }, []);
 
-  const addCard = ({ title, question, answer }) => {
-    setCards([...cards, { title, question, answer }]);
+  const [activeIndex, setActiveIndex] = useState("home");
+  const [cards, setCards] = useState([]);
+
+  const handleSubmit = cardData => {
+    //setCards([...cards, { title, question, answer }]);
+    postCard(cardData).then(card => setCards([...cards, card]));
   };
 
   function renderPage() {
     const pages = {
+      landing: <Landing onClick={setActiveIndex} />,
       home: (
         <PageStyle>
           <HomePage cards={cards} />
@@ -62,7 +34,7 @@ const App = () => {
       ),
       add: (
         <PageStyle>
-          <Form addCard={addCard} />
+          <Form onSubmit={handleSubmit} />
         </PageStyle>
       ),
       favorites: <PageStyle>Bookmarks</PageStyle>,
@@ -80,10 +52,12 @@ const App = () => {
         buttonTexts={["Home", "Add", "Bookmarks", "Settings"]}
         onClick={setActiveIndex}
       /> */}
+
       <NavigationIcons
         // buttonTexts={["Home", "Favorites", "Settings"]}
         onClick={setActiveIndex}
       />
+      {/* {landingPage()} */}
     </AppStyle>
   );
 };

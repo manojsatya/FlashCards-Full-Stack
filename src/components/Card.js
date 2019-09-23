@@ -13,6 +13,7 @@ function Card({ title, question, answer }) {
       <h2>{title}</h2>
       <p>{question}</p>
       {isAnswerVisible && <Answer text={answer} />}
+      <BookmarkStyled />
     </CardStyle>
   );
 
@@ -27,12 +28,22 @@ function Card({ title, question, answer }) {
 }
 
 const CardStyle = styled.section`
+  position: relative;
   background: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   margin-bottom: 20px;
   /* margin: 20px; */
+`;
+
+const BookmarkStyled = styled.div`
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  height: 40px;
+  border: 20px solid darkgrey;
+  border-bottom: 20px solid transparent;
 `;
 
 export default Card;

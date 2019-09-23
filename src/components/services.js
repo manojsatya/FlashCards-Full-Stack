@@ -7,7 +7,7 @@ export function postCard(data) {
 }
 
 function fetchCards({ method = "GET", id = "", data } = {}) {
-  return fetch("http://localhost:4000/cards" + id, {
+  return fetch("/cards/" + id, {
     method,
     body: JSON.stringify(data),
     headers: {
