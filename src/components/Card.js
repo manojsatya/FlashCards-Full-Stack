@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-function Card({ title, question, answer }) {
+function Card({ title, question, answer, isBookmarked }) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
 
   function toggleAnswer() {
@@ -12,8 +12,9 @@ function Card({ title, question, answer }) {
     <CardStyle onClick={toggleAnswer}>
       <h2>{title}</h2>
       <p>{question}</p>
+      {/* <i>{isBookmarked ? "Bookmarked" : "Not Bookmarked"}</i> */}
       {isAnswerVisible && <Answer text={answer} />}
-      <BookmarkStyled />
+      <BookmarkStyled active={isBookmarked} />
     </CardStyle>
   );
 
@@ -42,7 +43,7 @@ const BookmarkStyled = styled.div`
   top: -10px;
   right: 20px;
   height: 40px;
-  border: 20px solid darkgrey;
+  border: 20px solid ${isBookmarked ? "hotpink" : "darkgrey"};
   border-bottom: 20px solid transparent;
 `;
 

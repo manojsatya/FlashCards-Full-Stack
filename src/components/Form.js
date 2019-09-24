@@ -9,7 +9,6 @@ function Form({ onSubmit }) {
         <div>
           <input placeholder="Title" name="title"></input>
         </div>
-
         <div>
           <h3>Question:</h3>
           <textarea
@@ -28,7 +27,8 @@ function Form({ onSubmit }) {
             name="answer"
           ></textarea>
         </div>
-        {/* <input type="checkbox" name="isBookmarked"></input> */}
+        <input type="checkbox" name="isBookmarked" />
+        Bookmark <br />
         <button type="submit">Submit</button>
         {/* <Button variant="contained" className={classes.button} type="submit">
           Primary
@@ -40,7 +40,9 @@ function Form({ onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.target));
-    console.log(data);
+    data.isBookmarked = !data.isBookmarked ? "false" : "true";
+    //console.log(data.isBookmarked);
+    //console.log(data);
     onSubmit(data);
   }
 }
