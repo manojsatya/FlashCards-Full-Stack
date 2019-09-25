@@ -6,7 +6,7 @@ import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
 import NavigationIcons from "./NavigationIcons";
-import { getCards, postCard } from "./services";
+import { getCards, postCard, patchCard } from "./services";
 import Landing from "./Landing";
 
 //console.log(cardfromGet);
@@ -24,12 +24,25 @@ const App = () => {
     postCard(cardData).then(card => setCards([...cards, card]));
   };
 
+  function handleBookmarkClick(card) {
+    patchCard(card._id, { isBookmarked: !card.isBookmarked }).then(
+      updatedCard => {
+        const index = cards.findIndex(card => card._id === updatedCard._id);
+        setCards([
+          ...cards.slice(0, index),
+          { ...card, isBookmarked: updatedCard.isBookmarked },
+          ...cards.slice(index + 1)
+        ]);
+      }
+    );
+  }
+
   function renderPage() {
     const pages = {
       landing: <Landing onClick={setActiveIndex} />,
       home: (
         <PageStyle>
-          <HomePage cards={cards} />
+          <HomePage cards={cards} onBookmarkClick={handleBookmarkClick} />
         </PageStyle>
       ),
       add: (

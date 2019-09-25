@@ -4,14 +4,7 @@ import styled from "styled-components/macro";
 
 //import Slider from "react-slick";
 
-function HomePage({ cards }) {
-  //   const settings = {
-  //     dots: true,
-  //     infinite: true,
-  //     speed: 500,
-  //     slidesToShow: 1,
-  //     slidesToScroll: 1
-  //   };
+function HomePage({ cards, onBookmarkClick }) {
   return (
     <HomePageStyle>
       <h1>HomePage</h1>
@@ -22,6 +15,8 @@ function HomePage({ cards }) {
           title={card.title}
           question={card.question}
           answer={card.answer}
+          isBookmarked={card.isBookmarked}
+          onBookmarkClick={() => onBookmarkClick(card)}
         />
       ))}
     </HomePageStyle>
