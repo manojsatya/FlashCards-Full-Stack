@@ -6,6 +6,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/SettingsApplications";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,8 @@ function NavigationIcons({ onClick }) {
       className={classes.root}
     >
       <BottomNavigationAction
+        component={Link}
+        to="/"
         label="Home"
         value="home"
         icon={<HomeIcon fontSize="large" />}
@@ -40,6 +43,8 @@ function NavigationIcons({ onClick }) {
         onClick={() => onClick("home")}
       />
       <BottomNavigationAction
+        component={Link}
+        to="/add"
         label="Add"
         value="add"
         icon={<AddIcon fontSize="large" />}
