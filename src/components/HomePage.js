@@ -8,17 +8,20 @@ function HomePage({ cards, onBookmarkClick }) {
   return (
     <HomePageStyle>
       <h1>HomePage</h1>
-
-      {cards.map((card, index) => (
-        <Card
-          key={index}
-          title={card.title}
-          question={card.question}
-          answer={card.answer}
-          isBookmarked={card.isBookmarked}
-          onBookmarkClick={() => onBookmarkClick(card)}
-        />
-      ))}
+      <SliderContainer>
+        {cards.map((card, index) => (
+          <Card
+            key={index}
+            // title={card.title}
+            // question={card.question}
+            // answer={card.answer}
+            // isBookmarked={card.isBookmarked}
+            // tags={card.tags}
+            {...card}
+            onBookmarkClick={() => onBookmarkClick(card)}
+          />
+        ))}
+      </SliderContainer>
     </HomePageStyle>
   );
 }
@@ -28,5 +31,7 @@ const HomePageStyle = styled.section`
     display: grid;
   }
 `;
+
+const SliderContainer = styled.div``;
 
 export default HomePage;

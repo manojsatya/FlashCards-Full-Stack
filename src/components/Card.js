@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
+import Tag from "./Tag";
 
-function Card({ title, question, answer, isBookmarked, onBookmarkClick }) {
+function Card({
+  title,
+  question,
+  answer,
+  isBookmarked,
+  onBookmarkClick,
+  tags
+}) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
 
   function toggleAnswer() {
@@ -20,6 +28,7 @@ function Card({ title, question, answer, isBookmarked, onBookmarkClick }) {
       {/* <i>{isBookmarked ? "Bookmarked" : "Not Bookmarked"}</i> */}
       {isAnswerVisible && <Answer text={answer} />}
       <BookmarkStyled onClick={handleBookmarkClick} active={isBookmarked} />
+      {tags && tags.map(tag => <Tag text={tag} />)}
     </CardStyle>
   );
 
@@ -40,7 +49,7 @@ const CardStyle = styled.section`
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   margin-bottom: 20px;
-  /* margin: 20px; */
+  margin: 20px;
 `;
 
 const BookmarkStyled = styled.div`

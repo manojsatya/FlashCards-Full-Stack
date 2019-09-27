@@ -15,18 +15,22 @@ const useStyles = makeStyles({
     height: "10vh",
     backgroundColor: "skyblue",
     position: "fixed",
-    bottom: 0,
-    marginBottom: "-10px"
+    bottom: 0
+    // marginBottom: "-5px"
   }
+  // selected: {
+  //   backgroundColor: "black"
+  // }
 });
 
 function NavigationIcons({ onClick }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState("recents");
+  const [value, setValue] = React.useState("home");
 
   function handleChange(event, newValue) {
     setValue(newValue);
   }
+
   return (
     <BottomNavigation
       value={value}
@@ -40,7 +44,8 @@ function NavigationIcons({ onClick }) {
         value="home"
         icon={<HomeIcon fontSize="large" />}
         key="0"
-        onClick={() => onClick("home")}
+
+        //onClick={{ handleClick }}
       />
       <BottomNavigationAction
         component={Link}
@@ -49,14 +54,14 @@ function NavigationIcons({ onClick }) {
         value="add"
         icon={<AddIcon fontSize="large" />}
         key="1"
-        onClick={() => onClick("add")}
+        // onClick={() => onClick("add")}
       />
       <BottomNavigationAction
         label="Favorites"
         value="favorites"
         icon={<FavoriteIcon fontSize="large" />}
         key="2"
-        onClick={() => onClick("favorites")}
+        // onClick={() => onClick("favorites")}
       />
 
       <BottomNavigationAction
@@ -64,7 +69,7 @@ function NavigationIcons({ onClick }) {
         value="settings"
         icon={<SettingsIcon fontSize="large" />}
         key="3"
-        onClick={() => onClick("settings")}
+        // onClick={() => onClick("settings")}
       />
     </BottomNavigation>
   );

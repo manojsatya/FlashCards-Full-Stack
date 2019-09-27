@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 //import PageStyle from "./Page";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
-//import NavigationIcons from "./NavigationIcons";
+import NavigationIcons from "./NavigationIcons";
 import { getCards, postCard, patchCard } from "./services";
 //import Landing from "./Landing";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -77,10 +77,10 @@ const App = () => {
 
         <Route path="/add" render={() => <Form onSubmit={handleSubmit} />} />
 
-        {/* <NavigationIcons
-          // buttonTexts={["Home", "Favorites", "Settings"]}
-          onClick={setActiveIndex}
-        /> */}
+        <NavigationIcons
+        // buttonTexts={["Home", "Favorites", "Settings"]}
+        // onClick={setActiveIndex}
+        />
         {/* {landingPage()} */}
       </AppStyle>
     </Router>
@@ -89,7 +89,7 @@ const App = () => {
 
 const AppStyle = styled.div`
   display: grid;
-  grid-template-rows: auto 0px;
+  grid-template-rows: auto 60px;
   min-height: 100vh;
   font-family: sans-serif;
 `;
