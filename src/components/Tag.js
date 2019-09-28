@@ -16,4 +16,5 @@ const Tagstyled = styled.div`
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin: 5px;
 `;

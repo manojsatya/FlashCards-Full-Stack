@@ -28,7 +28,7 @@ function HomePage({ cards, onBookmarkClick }) {
 
 const HomePageStyle = styled.section`
   * {
-    display: grid;
+    /* display: grid; */
   }
 `;
 

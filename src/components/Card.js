@@ -28,7 +28,7 @@ function Card({
       {/* <i>{isBookmarked ? "Bookmarked" : "Not Bookmarked"}</i> */}
       {isAnswerVisible && <Answer text={answer} />}
       <BookmarkStyled onClick={handleBookmarkClick} active={isBookmarked} />
-      {tags && tags.map(tag => <Tag text={tag} />)}
+      {tags && tags.map(tag => <Tag text={tag} key={tag} />)}
     </CardStyle>
   );
 
