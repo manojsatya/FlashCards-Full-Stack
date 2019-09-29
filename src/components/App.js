@@ -6,7 +6,7 @@ import styled from "styled-components/macro";
 import GlobalStyle from "./GlobalStyle";
 import Form from "./Form";
 import NavigationIcons from "./NavigationIcons";
-import { getCards, postCard, patchCard } from "./services";
+import { getCards, postCard, patchCard, getNews } from "./services";
 //import Landing from "./Landing";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -38,6 +38,11 @@ const App = () => {
     );
   }
 
+  function displayNews() {
+    getNews().then(data => console.log(data));
+  }
+
+  displayNews();
   // function renderPage() {
   //   const pages = {
   //     landing: <Landing onClick={setActiveIndex} />,
